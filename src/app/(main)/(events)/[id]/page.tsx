@@ -8,6 +8,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import Booking from "@/components/Booking";
 
 interface Event {
   _id: string;
@@ -126,7 +127,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   if (!events) return <div>Event not found</div>;
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-hidden">
+    <div className="flex flex-col gap-4 h-full overflow-auto">
       <div className="flex items-center py-2 gap-1 text-sm">
         <Link href="/" className="">
           Home
@@ -135,7 +136,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
         <p>{events.title}</p>
       </div>
 
-      <div className="flex flex-col gap-3 h-full overflow-auto">
+      <div className="flex flex-col gap-3 h-fit">
         <div className="flex items-center justify-between gap-2 flex-wrap">
           <h2 className="text-xl font-semibold">{events.title}</h2>
           <p>
@@ -169,6 +170,9 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
           )}
         </div>
       </div>
+        <div className="flex rounded h-fit">
+          {isLoggedIn && <Booking eventId={events._id} />}
+        </div>
     </div>
   );
 };
