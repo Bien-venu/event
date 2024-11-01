@@ -4,6 +4,7 @@
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Book = () => {
   const { booking, setBooking, book, setEvent } = useAppContext();
@@ -15,6 +16,7 @@ const Book = () => {
   const [seatsToBook, setSeatsToBook] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   const fetchEventById = async () => {
     setLoading(true);

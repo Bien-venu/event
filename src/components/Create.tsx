@@ -4,6 +4,7 @@
 import { useAppContext } from "@/context/AppContext";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const CreateEvent = () => {
   const { create, setCreate, setEvent, edit } = useAppContext();
@@ -14,7 +15,8 @@ const CreateEvent = () => {
   const [eventId, setEventId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
+  const router = useRouter();
+  
   const fetchEventById = async () => {
     setLoading(true);
     try {
@@ -64,6 +66,7 @@ const CreateEvent = () => {
         resetForm();
         setCreate(false);
         setEvent(true);
+        router.push("/admin");
       } else {
         const data = await res.json();
         const errorMessage = data.error || "Failed to save event";
