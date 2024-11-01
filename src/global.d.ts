@@ -1,15 +1,10 @@
-// global.d.ts
-import mongoose from "mongoose";
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable no-var */
 declare global {
-  namespace NodeJS {
-    interface Global {
-      mongoose: {
-        conn: mongoose.Connection | null;
-        promise: Promise<mongoose.Connection> | null;
-      };
-    }
-  }
+  var mongoose: {
+    conn: any;
+    promise: any;
+  };
 }
 
 export {};
